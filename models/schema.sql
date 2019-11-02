@@ -5,7 +5,7 @@ CREATE TABLE Employee
 (
     userId INTEGER NOT NULL,
     empName VARCHAR(255) NOT NULL,
-   empPassword NOT NULL,
+   	empPassword NOT NULL,
     manager BOOLEAN DEFAULT false,
     PRIMARY KEY (userId)
 );
