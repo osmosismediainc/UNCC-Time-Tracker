@@ -20,3 +20,5 @@ INSERT INTO TimePunch (empName, clockDate, clockIn, clockOut, employee_id) VALUE
 INSERT INTO TimePunch (empName, clockDate, clockIn, clockOut, employee_id) VALUES ("Will Stratford", "2019-10-29", "06:48:37", "16:29:58", 2079876);
 INSERT INTO TimePunch (empName, clockDate, clockIn, clockOut, employee_id) VALUES ("Martha Jones", "2019-10-29", "07:31:56", "16:02:28", 3019871);
 INSERT INTO TimePunch (empName, clockDate, clockIn, clockOut, employee_id) VALUES ("Pam Washington", "2019-10-29", "08:57:29", "19:21:42", 4902816); 
+
+SELECT * FROM TimePunch;
