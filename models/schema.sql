@@ -5,7 +5,7 @@ CREATE TABLE Employee
 (
     userId INTEGER NOT NULL,
     empName VARCHAR(255) NOT NULL,
-   	empPassword NOT NULL,
+   	empPassword VARCHAR(255) NOT NULL,
     manager BOOLEAN DEFAULT false,
     PRIMARY KEY (userId)
 );
@@ -22,5 +22,3 @@ CREATE TABLE TimePunch
     PRIMARY KEY (TimePunch_id),
 	FOREIGN KEY (employee_id) REFERENCES Employee(userId) ON UPDATE CASCADE ON DELETE CASCADE
 );
-
-SELECT * FROM TimePunch;
