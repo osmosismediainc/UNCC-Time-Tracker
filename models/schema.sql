@@ -22,5 +22,3 @@ CREATE TABLE TimePunch
     PRIMARY KEY (TimePunchIid),
 	FOREIGN KEY (employeeId) REFERENCES Employee(userId) ON UPDATE CASCADE ON DELETE CASCADE
 );
-
-SELECT * FROM TimePunch;
