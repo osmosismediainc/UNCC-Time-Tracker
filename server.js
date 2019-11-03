@@ -41,6 +41,7 @@ db.sequelize.sync(syncOptions).then(function() {
       PORT,
       PORT
     );
+    // console.log(db.Employee);
   });
 });
 

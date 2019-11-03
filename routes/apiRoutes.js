@@ -1,16 +1,28 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Create a new employee
-  app.post("/api/employees", function(req, res) {
-    db.Employee.create(req.body).then(function(dbEmployee) {
+  // Find single Employee
+  app.get("/api/employee/:userId/:empPassword", function(req, res) {
+    db.Employee.findOne({
+      where: {
+        userId: req.params.userId,
+        empPassword: req.params.empPassword
+      }
+    }).then(function(dbEmployee) {
       res.json(dbEmployee);
+    });
+  });
+
+  // Create a new employee
+  app.post("/api/new-employees", function(req, res) {
+    db.Employee.create(req.body).then(function(dbNewEmployee) {
+      res.json(dbNewEmployee);
     });
   });
 
   // View Employees
   app.get("/api/view-employees", function(req, res) {
-    db.Employee.findAll(req.body).then(function(dbViewEmployee) {
+    db.Employee.findAll({}).then(function(dbViewEmployee) {
       res.json(dbViewEmployee);
     });
   });
