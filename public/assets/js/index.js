@@ -16,7 +16,13 @@ $(document).ready(function() {
     event.preventDefault();
 
     // Grabbed Values
-    var tName = $("#lastName" + ", " + "#firstName");
+    var tLastName = $("#lastName")
+      .val()
+      .trim();
+    var tFirstName = $("#firstName")
+      .val()
+      .trim();
+    var tName = tLastName + " " + tFirstName;
     var tUserName = $("#userName")
       .val()
       .trim();
@@ -27,12 +33,22 @@ $(document).ready(function() {
     console.log(tName);
     console.log(tUserName);
     console.log(tPassword);
-    //Create new row to add new employee data
-    var newRow = $("<tr>");
-    newRow.prepend($("<td>" + tName + "</td>"));
-    newRow.prepend($("<td>" + tUserName + "</td>"));
-    newRow.prepend($("<td>" + tPassword + "</td>"));
-    // Prepend the new row to the table
-    $("#employeeList").prepend(newRow);
+    //Construct a newEmp object to hand to the database
+    var newEmp = {
+      employeeName: $("#lastName").val() + "" + $("#firstName").val(),
+      userName: $("#userName")
+        .val()
+        .trim(),
+      password: $("#password")
+        .val()
+        .trim()
+    };
+    //Send an AJAX POST-request with jQuery
+    $.post("/api/new-employees", newEmp)
+      //On success, run the following code
+      .then(function(data) {
+        //Log the data we found
+        console.log("data:", data);
+      });
   });
 });
