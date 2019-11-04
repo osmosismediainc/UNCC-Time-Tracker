@@ -13,7 +13,7 @@ CREATE TABLE Employees
     PRIMARY KEY (id)
 );
 
-CREATE TABLE TimePunchs
+CREATE TABLE TimePunches
 (    
 	TimePunch_id INTEGER AUTO_INCREMENT NOT NULL,
 	empName VARCHAR(255) NOT NULL,
