@@ -10,7 +10,7 @@ module.exports = function(app) {
   app.get("/home", function(req, res) {
     db.Employee.findOne({
       where: {
-        id: 1
+        id: 3
       }
     }).then(function(data) {
       var userObject = {
@@ -29,7 +29,11 @@ module.exports = function(app) {
   // Route to View Employee
   app.get("/employeeList", function(req, res) {
     db.Employee.findAll({}).then(function(data) {
-      res.render("employeeList", data);
+      var users = {
+        employee: data
+      };
+      res.render("employeeList", users);
+      console.log(users.employee[0].id);
     });
   });
 
