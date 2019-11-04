@@ -6,12 +6,15 @@
                 <p>You are currently clocked <span id="punchStatus">OUT</span>. Last punch was <span
                         id="punchTime">12:57 PM</span></p>
                 <br />
-                <a class="waves-effect waves-light btn green"><i class="material-icons left">check</i>Clock In</a>
-                <a class="waves-effect waves-light btn red"><i class="material-icons left">clear</i>Clock Out</a>
-                <a class="waves-effect waves-light btn blue" href="/timePunch"><i
+                <a id="clockIn" class="waves-effect waves-light btn green"><i class="material-icons left">check</i>Clock
+                    In</a>
+                <a id="clockOut" class="waves-effect waves-light btn red"><i class="material-icons left">clear</i>Clock
+                    Out</a>
+                <a id="viewPunch" class="waves-effect waves-light btn blue" href="/timePunch"><i
                         class="material-icons left">access_time</i>View Your
                     Time</a>
             </div>
+            {{#if user.manager}}
             <div class="card-content center-align black-text white">
                 <span class="card-title">Manager Menu</span>
                 <br />
@@ -21,6 +24,7 @@
                         class="material-icons left">account_box</i>Add
                     Employee</a>
             </div>
+            {{/if}}
         </div>
     </div>
 </div>
