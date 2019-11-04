@@ -20,7 +20,7 @@ $(document).ready(function() {
   };
 
   // Detects if the users userName and Password are in the database. If not throw err
-  $("#login-btn").on("click", function() {
+  $("#login-btn").on("click", function(event) {
     var userIdInput = $("#userIdInput").val();
     var loginPassword = $("#loginPassword").val();
     console.log(userIdInput);
@@ -29,28 +29,32 @@ $(document).ready(function() {
 
     if (userIdInput === "" || loginPassword === "") {
       console.log("Err");
-      return false;
+      event.preventDefault();
     } else {
       $.get(queryUrl, function(data) {
         if (data) {
-          console.log(data);
           currentUser = {
             id: data.id,
             userId: data.userId,
             empName: data.empName,
             manager: data.manager
           };
-          $($("#login-btn")).attr("href", "/home");
+          localStorage.setItem("currentUser", JSON.stringify(currentUser));
           console.log(currentUser);
         } else {
-          console.log("Error");
-          return false;
+          console.log("Why isn't this working!!!!");
+          event.preventDefault();
         }
       });
     }
   });
+});
+var retrievedUser = JSON.parse(localStorage.getItem("currentUser"));
+console.log("retrievedUser: ", retrievedUser);
 
-  $("#clockIn").on("click", function() {
-    console.log(currentUser);
+$("#viewPunch").on("click", function() {
+  var queryUrl = "/api/employees/" + retrievedUser.id;
+  $.get(queryUrl, function(data) {
+    console.log(data.TimePunches);
   });
 });

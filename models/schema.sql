@@ -3,6 +3,7 @@ CREATE DATABASE timetracker_db;
 USE timetracker_db;
 
 CREATE TABLE Employees
+(
 	id INTEGER AUTO_INCREMENT NOT NULL,
     userId INTEGER NOT NULL,
     empName VARCHAR(255) NOT NULL,
