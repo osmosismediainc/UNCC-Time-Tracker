@@ -11,6 +11,44 @@ $(document).ready(function() {
   });
   $(".modal-trigger").leanModal();
   $(".carousel").carousel();
+  //Add New Employee
+  $("#addEmployee-btn").on("click", function(event) {
+    event.preventDefault();
+
+    // Grabbed Values
+    var tLastName = $("#lastName")
+      .val()
+      .trim();
+    var tFirstName = $("#firstName")
+      .val()
+      .trim();
+    var tName = tLastName + " " + tFirstName;
+    var tUserName = $("#userName")
+      .val()
+      .trim();
+    var tPassword = $("#password")
+      .val()
+      .trim();
+    //Check variables
+    console.log(tName);
+    console.log(tUserName);
+    console.log(tPassword);
+    //Construct a newEmp object to hand to the database
+    var newEmp = {
+      userId: tUserName,
+      empName: tName,
+      empPassword: tPassword,
+      manager: false
+    };
+
+    //Send an AJAX POST-request with jQuery
+    $.post("/api/new-employees", newEmp)
+      //On success, run the following code
+      .then(function(data) {
+        //Log the data we found
+        console.log("data:", data);
+      });
+  });
 
   var currentUser = {
     id: 0,
@@ -18,6 +56,7 @@ $(document).ready(function() {
     empName: "",
     manager: false
   };
+
   //Geolocation
   $("#clockIn").on("click", function() {
     var location = getLocation;
