@@ -38,9 +38,7 @@ $(document).ready(function() {
           };
           localStorage.setItem("currentUser", JSON.stringify(currentUser));
           console.log(currentUser);
-          window.location.replace(
-            "http://localhost:3000/home/" + currentUser.id
-          );
+          window.location.href = "http://localhost:3000/home/" + currentUser.id;
         } else {
           console.log("Why isn't this working!!!!");
         }
@@ -55,7 +53,7 @@ $(document).ready(function() {
     var queryUrl = "/api/employees/" + retrievedUser.id;
     $.get(queryUrl, function(data) {
       var timePunches = data.timePunches;
-      window.location.replace("http://localhost:3000/timePunch/" + data.id);
+      window.location.href = "http://localhost:3000/timePunch/" + data.id;
       console.log(timePunches);
       console.log("this is data: " + data.TimePunches);
     });
