@@ -12,7 +12,7 @@ $(document).ready(function() {
   $(".modal-trigger").leanModal();
   $(".carousel").carousel();
   //Add New Employee
-  $("#addEmployee-btn").on("click", function() {
+  $("#addEmployee-btn").on("click", function(event) {
     event.preventDefault();
 
     // Grabbed Values
@@ -35,14 +35,12 @@ $(document).ready(function() {
     console.log(tPassword);
     //Construct a newEmp object to hand to the database
     var newEmp = {
-      employeeName: $("#lastName").val() + "" + $("#firstName").val(),
-      userName: $("#userName")
-        .val()
-        .trim(),
-      password: $("#password")
-        .val()
-        .trim()
+      userId: tUserName,
+      empName: tName,
+      empPassword: tPassword,
+      manager: false
     };
+
     //Send an AJAX POST-request with jQuery
     $.post("/api/new-employees", newEmp)
       //On success, run the following code

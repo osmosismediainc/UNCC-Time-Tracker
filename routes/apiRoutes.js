@@ -15,8 +15,13 @@ module.exports = function(app) {
 
   // Create a new employee
   app.post("/api/new-employees", function(req, res) {
+    console.log(req.body);
     console.log("hello post");
-    db.Employee.create(req.body).then(function(dbNewEmployee) {
+    db.Employee.create({
+      userId: req.body.userId,
+      empName: req.body.empName,
+      empPassword: req.body.empPassword
+    }).then(function(dbNewEmployee) {
       console.log("New employee created: ", dbNewEmployee);
       res.json(dbNewEmployee);
     });
