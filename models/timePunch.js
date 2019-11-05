@@ -6,8 +6,8 @@ module.exports = function(sequelize, DataTypes) {
     clockOut: DataTypes.TIME
   });
   TimePunch.associate = function(models) {
-    // We're saying that a TimePunch should belong to an Author
-    // A TimePunch can't be created without an Author due to the foreign key constraint
+    // We're saying that a TimePunch should belong to an Employee
+    // A TimePunch can't be created without an Employee due to the foreign key constraint
     TimePunch.belongsTo(models.Employee, {
       foreignKey: {
         allowNull: false
