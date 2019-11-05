@@ -57,8 +57,8 @@ $("#viewPunch").on("click", function() {
   $(".fired").on("click", function(event) {
     event.preventDefault();
     var id = $(this).data("id");
-    $.put("/api/delEmployee/" + id, {
-      type: "PUT"
+    $.destroy("/api/delEmployee/" + id, {
+      // type: "PUT"
     }).then(function() {
       location.reload();
     });

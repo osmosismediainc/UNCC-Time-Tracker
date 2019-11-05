@@ -33,11 +33,7 @@ module.exports = function(app) {
         employee: data
       };
       res.render("employeeList", users);
-<<<<<<< HEAD
-      console.log(users.employee);
-=======
       console.log(users.employee[0].id);
->>>>>>> b775cc2a9ace99a566f7960cd50e77b3b90ffced
     });
   });
 
