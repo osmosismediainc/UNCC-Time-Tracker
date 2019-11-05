@@ -13,18 +13,6 @@ module.exports = function(app) {
     });
   });
 
-  // Find single employees time
-  // app.get("/api/times/:id", function(req, res) {
-  //   db.TimePunches.findOne({
-  //     include: [db.TimePunch],
-  //     where: {
-  //       userId: req.params.userId
-  //     }
-  //   }).then(function(dbEmployee) {
-  //     res.json(dbEmployee);
-  //   });
-  // });
-
   // Create a new employee
   app.post("/api/new-employees", function(req, res) {
     db.Employee.create(req.body).then(function(dbNewEmployee) {
