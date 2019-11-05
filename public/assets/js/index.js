@@ -56,6 +56,28 @@ $(document).ready(function() {
     empName: "",
     manager: false
   };
+
+  //Geolocation
+  $("#clockIn").on("click", function() {
+    var location = getLocation;
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+        console.log(location);
+      } else {
+        location.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+  });
+
+  // function showPosition(position) {
+  //   x.innerHTML =
+  //     "Latitude: " +
+  //     position.coords.latitude +
+  //     "<br>Longitude: " +
+  //     position.coords.longitude;
+  // }
+
   // Detects if the users userName and Password are in the database. If not throw err
   $("#login-btn").on("click", function() {
     var userIdInput = $("#userIdInput").val();
@@ -97,14 +119,14 @@ $(document).ready(function() {
       console.log("this is data: " + data.TimePunches);
     });
   });
-});
-$(".fired").on("click", function(event) {
-  event.preventDefault();
-  var id = $(this).data("id");
-  // console.log("clicky click");
-  $.ajax("/api/delEmployee/" + id, {
-    type: "DELETE"
-  }).then(function() {
-    location.reload();
+  $(".fired").on("click", function(event) {
+    event.preventDefault();
+    var id = $(this).data("id");
+    // console.log("clicky click");
+    $.ajax("/api/delEmployee/" + id, {
+      type: "DELETE"
+    }).then(function() {
+      location.reload();
+    });
   });
 });
