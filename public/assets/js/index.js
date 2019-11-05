@@ -60,14 +60,14 @@ $(document).ready(function() {
       console.log("this is data: " + data.TimePunches);
     });
   });
-
-  $(".fired").on("click", function(event) {
-    event.preventDefault();
-    var id = $(this).data("id");
-    $.destroy("/api/delEmployee/" + id, {
-      // type: "PUT"
-    }).then(function() {
-      location.reload();
-    });
+});
+$(".fired").on("click", function(event) {
+  event.preventDefault();
+  var id = $(this).data("id");
+  // console.log("clicky click");
+  $.ajax("/api/delEmployee/" + id, {
+    type: "PUT"
+  }).then(function() {
+    location.reload();
   });
 });
