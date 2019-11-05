@@ -50,7 +50,7 @@ $(document).ready(function() {
 });
 var retrievedUser = JSON.parse(localStorage.getItem("currentUser"));
 console.log("retrievedUser: ", retrievedUser);
-
+// Note
 $("#viewPunch").on("click", function() {
   var queryUrl = "/api/employees/" + retrievedUser.id;
   $.get(queryUrl, function(data) {
