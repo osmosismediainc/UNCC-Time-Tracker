@@ -1,4 +1,5 @@
-// var db = require("../models");
+var db = require("../models");
+// var retrievedUser = require("../public/assets/js/index");
 
 module.exports = function(app) {
   // Load index page
@@ -7,7 +8,17 @@ module.exports = function(app) {
   });
   // Route to Home View
   app.get("/home", function(req, res) {
-    res.render("home", {});
+    db.Employee.findOne({
+      where: {
+        id: 3
+      }
+    }).then(function(data) {
+      var userObject = {
+        user: data
+      };
+      res.render("home", userObject);
+      console.log(userObject);
+    });
   });
 
   // Route to Manager Add
@@ -17,7 +28,13 @@ module.exports = function(app) {
 
   // Route to View Employee
   app.get("/employeeList", function(req, res) {
-    res.render("employeeList", {});
+    db.Employee.findAll({}).then(function(data) {
+      var users = {
+        employee: data
+      };
+      res.render("employeeList", users);
+      console.log(users.employee);
+    });
   });
 
   // Route to View Time

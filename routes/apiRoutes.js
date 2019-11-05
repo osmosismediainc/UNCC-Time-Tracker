@@ -2,7 +2,7 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Find single Employee
-  app.get("/api/employee/:userId/:empPassword", function(req, res) {
+  app.get("/api/view-employees/:userId/:empPassword", function(req, res) {
     db.Employee.findOne({
       where: {
         userId: req.params.userId,
@@ -33,18 +33,28 @@ module.exports = function(app) {
   });
 
   // View Employees
-  app.get("/api/view-employees", function(req, res) {
+  app.get("/api/employees", function(req, res) {
     db.Employee.findAll({}).then(function(dbViewEmployee) {
       res.json(dbViewEmployee);
     });
   });
 
-  // View single employee's times
-  app.get("/api/view-times/:id", function(req, res) {
-    db.TimePunch.findAll({
-      where: { TimePunch_id: req.params.id }
-    }).then(function(dbViewTimes) {
-      res.json(dbViewTimes);
+  // Lists all time punches
+  app.get("/api/punches", function(req, res) {
+    db.TimePunch.findAll({}).then(function(view) {
+      res.json(view);
+    });
+  });
+
+  // 2; Add a join to include all of the Author's Posts here
+  app.get("/api/employees/:id", function(req, res) {
+    db.Employee.findOne({
+      include: [db.TimePunch],
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbAuthor) {
+      res.json(dbAuthor);
     });
   });
 
@@ -56,7 +66,7 @@ module.exports = function(app) {
   });
 
   // Delete an Employee by id
-  app.delete("/api/employees/:userId", function(req, res) {
+  app.delete("/api/delEmployee/:id", function(req, res) {
     db.Employee.destroy({ where: { id: req.params.id } }).then(function(
       dbEmployee
     ) {
