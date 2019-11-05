@@ -14,22 +14,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {{#each employee}}
                         <tr>
-                            <td>987</td>
-                            <td>Joe Schmoe</td>
-                            <td class="right-align"> <a class="btn-floating btn-small waves-effect waves-light red"><i
+                            <td>{{userId}}</td>
+                            <td>{{empName}}</td>
+                            <td class="right-align fired"> <a class="btn-floating btn-small waves-effect waves-light red"><i
                                         class="material-icons">delete_forever</i></a>&nbsp;&nbsp; <a
                                     class="btn-floating btn-small waves-effect waves-light red" href="/timePunches"><i
                                         class="material-icons">visibility</i></a> </td>
                         </tr>
-                        <tr>
-                            <td>987</td>
-                            <td>Joe Schmoe</td>
-                            <td class="right-align"> <a class="btn-floating btn-small waves-effect waves-light red"><i
-                                        class="material-icons">delete_forever</i></a>&nbsp;&nbsp; <a
-                                    class="btn-floating btn-small waves-effect waves-light red" href="/timePunches"><i
-                                        class="material-icons">visibility</i></a> </td>
-                        </tr>
+                        {{/each}}
                     </tbody>
                 </table>
             </div>
