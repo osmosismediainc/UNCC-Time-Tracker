@@ -47,7 +47,7 @@ module.exports = function(app) {
         id: req.params.id
       }
     }).then(function(dbEmployee) {
-      res.render("timePunch", dbEmployee.TimePunch);
+      res.render("timePunch", dbEmployee);
       console.log("This is Employee" + dbEmployee.TimePunches);
     });
   });
