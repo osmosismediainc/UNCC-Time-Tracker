@@ -20,16 +20,13 @@ $(document).ready(function() {
   };
 
   // Detects if the users userName and Password are in the database. If not throw err
-  $("#login-btn").on("click", function(event) {
+  $("#login-btn").on("click", function() {
     var userIdInput = $("#userIdInput").val();
     var loginPassword = $("#loginPassword").val();
-    console.log(userIdInput);
-    console.log(loginPassword);
     var queryUrl = "/api/view-employees/" + userIdInput + "/" + loginPassword;
 
     if (userIdInput === "" || loginPassword === "") {
       console.log("Err");
-      event.preventDefault();
     } else {
       $.get(queryUrl, function(data) {
         if (data) {
@@ -41,9 +38,9 @@ $(document).ready(function() {
           };
           localStorage.setItem("currentUser", JSON.stringify(currentUser));
           console.log(currentUser);
+          window.location.replace("http://localhost:3000/home");
         } else {
           console.log("Why isn't this working!!!!");
-          event.preventDefault();
         }
       });
     }
