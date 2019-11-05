@@ -7,17 +7,18 @@ module.exports = function(app) {
     res.render("index", {});
   });
   // Route to Home View
-  app.get("/home", function(req, res) {
+  app.get("/home/:id", function(req, res) {
+    console.log("request params: ", req.params);
     db.Employee.findOne({
       where: {
-        id: 3
+        id: req.params.id
       }
     }).then(function(data) {
+      console.log(data);
       var userObject = {
         user: data
       };
       res.render("home", userObject);
-      console.log(userObject);
     });
   });
 
