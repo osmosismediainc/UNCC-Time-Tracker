@@ -38,7 +38,9 @@ $(document).ready(function() {
           };
           localStorage.setItem("currentUser", JSON.stringify(currentUser));
           console.log(currentUser);
-          window.location.replace("http://localhost:3000/home");
+          window.location.replace(
+            "http://localhost:3000/home/" + currentUser.id
+          );
         } else {
           console.log("Why isn't this working!!!!");
         }
