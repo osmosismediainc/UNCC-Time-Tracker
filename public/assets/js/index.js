@@ -47,14 +47,18 @@ $(document).ready(function() {
       });
     }
   });
-});
-var retrievedUser = JSON.parse(localStorage.getItem("currentUser"));
-console.log("retrievedUser: ", retrievedUser);
-// Note
-$("#viewPunch").on("click", function() {
-  var queryUrl = "/api/employees/" + retrievedUser.id;
-  $.get(queryUrl, function(data) {
-    console.log(data.TimePunches);
+
+  var retrievedUser = JSON.parse(localStorage.getItem("currentUser"));
+  console.log("retrievedUser: ", retrievedUser);
+
+  $("#viewPunch").on("click", function() {
+    var queryUrl = "/api/employees/" + retrievedUser.id;
+    $.get(queryUrl, function(data) {
+      var timePunches = data.timePunches;
+      window.location.replace("http://localhost:3000/timePunch/" + data.id);
+      console.log(timePunches);
+      console.log("this is data: " + data.TimePunches);
+    });
   });
 });
 $(".fired").on("click", function(event) {

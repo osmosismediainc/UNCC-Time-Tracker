@@ -8,13 +8,11 @@ module.exports = function(app) {
   });
   // Route to Home View
   app.get("/home/:id", function(req, res) {
-    console.log("request params: ", req.params);
     db.Employee.findOne({
       where: {
         id: req.params.id
       }
     }).then(function(data) {
-      console.log(data);
       var userObject = {
         user: data
       };
@@ -34,7 +32,6 @@ module.exports = function(app) {
         employee: data
       };
       res.render("employeeList", users);
-      console.log(users.employee[0].id);
     });
   });
 
@@ -43,8 +40,16 @@ module.exports = function(app) {
     res.render("timePunches", {});
   });
 
-  app.get("/timePunch", function(req, res) {
-    res.render("timePunch", {});
+  app.get("/timePunch/:id", function(req, res) {
+    db.Employee.findOne({
+      include: [db.TimePunch],
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbEmployee) {
+      res.render("timePunch", dbEmployee.TimePunch);
+      console.log("This is Employee" + dbEmployee.TimePunches);
+    });
   });
 
   // Render 404 page for any unmatched routes
