@@ -56,6 +56,31 @@ $(document).ready(function() {
     empName: "",
     manager: false
   };
+
+  //Geolocation
+  $("#clockIn").on("click", function() {
+    getLocation();
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+    function showPosition(position) {
+      console.log(position.coords.latitude);
+      console.log(position.coords.longitude);
+    }
+  });
+
+  // function showPosition(position) {
+  //   x.innerHTML =
+  //     "Latitude: " +
+  //     position.coords.latitude +
+  //     "<br>Longitude: " +
+  //     position.coords.longitude;
+  // }
+
   // Detects if the users userName and Password are in the database. If not throw err
   $("#login-btn").on("click", function() {
     var userIdInput = $("#userIdInput").val();
