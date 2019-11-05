@@ -103,7 +103,7 @@ $(".fired").on("click", function(event) {
   var id = $(this).data("id");
   // console.log("clicky click");
   $.ajax("/api/delEmployee/" + id, {
-    type: "PUT"
+    type: "DELETE"
   }).then(function() {
     location.reload();
   });
