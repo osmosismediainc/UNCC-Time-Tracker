@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
 
   Employee.associate = function(models) {
     // Associating Employee with TimePunch
-    // When an Employee is deleted, also delete any associated Posts
+    // When an Employee is deleted, also delete any associated time punches
     Employee.hasMany(models.TimePunch, {
       onDelete: "cascade"
     });

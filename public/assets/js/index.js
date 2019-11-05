@@ -11,6 +11,44 @@ $(document).ready(function() {
   });
   $(".modal-trigger").leanModal();
   $(".carousel").carousel();
+  //Add New Employee
+  $("#addEmployee-btn").on("click", function(event) {
+    event.preventDefault();
+
+    // Grabbed Values
+    var tLastName = $("#lastName")
+      .val()
+      .trim();
+    var tFirstName = $("#firstName")
+      .val()
+      .trim();
+    var tName = tLastName + " " + tFirstName;
+    var tUserName = $("#userName")
+      .val()
+      .trim();
+    var tPassword = $("#password")
+      .val()
+      .trim();
+    //Check variables
+    console.log(tName);
+    console.log(tUserName);
+    console.log(tPassword);
+    //Construct a newEmp object to hand to the database
+    var newEmp = {
+      userId: tUserName,
+      empName: tName,
+      empPassword: tPassword,
+      manager: false
+    };
+
+    //Send an AJAX POST-request with jQuery
+    $.post("/api/new-employees", newEmp)
+      //On success, run the following code
+      .then(function(data) {
+        //Log the data we found
+        console.log("data:", data);
+      });
+  });
 
   var currentUser = {
     id: 0,
@@ -18,7 +56,6 @@ $(document).ready(function() {
     empName: "",
     manager: false
   };
-
   // Detects if the users userName and Password are in the database. If not throw err
   $("#login-btn").on("click", function() {
     var userIdInput = $("#userIdInput").val();
@@ -47,7 +84,7 @@ $(document).ready(function() {
   });
 
   var retrievedUser = JSON.parse(localStorage.getItem("currentUser"));
-  console.log("retrievedUser: ", retrievedUser);
+  console.log(retrievedUser);
 
   $("#viewPunch").on("click", function() {
     var queryUrl = "/api/employees/" + retrievedUser.id;
@@ -55,17 +92,27 @@ $(document).ready(function() {
       var timePunches = data.timePunches;
       window.location.href = "http://localhost:3000/timePunch/" + data.id;
       console.log(timePunches);
-      console.log("this is data: " + data.TimePunches);
     });
   });
 
   $(".fired").on("click", function(event) {
     event.preventDefault();
     var id = $(this).data("id");
-    $.destroy("/api/delEmployee/" + id, {
-      // type: "PUT"
+    // console.log("clicky click");
+    $.ajax("/api/delEmployee/" + id, {
+      type: "DELETE"
     }).then(function() {
       location.reload();
+    });
+  });
+
+  $(".viewPunches").on("click", function() {
+    var id = $(this).data("id");
+    var queryUrl = "/api/employees/" + id;
+    $.get(queryUrl, function(data) {
+      var timePunches = data.timePunches;
+      window.location.href = "http://localhost:3000/timePunch/" + data.id;
+      console.log(timePunches);
     });
   });
 });

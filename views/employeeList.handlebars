@@ -5,7 +5,7 @@
                 <span class="card-title">Employee List</span>
             </div>
             <div class="card-content center-align black-text white">
-                <table class="highlight responsive-table">
+                <table class="highlight responsive-table" id="employeeList">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -18,10 +18,12 @@
                         <tr>
                             <td>{{userId}}</td>
                             <td>{{empName}}</td>
-                            <td class="right-align fired"> <a class="btn-floating btn-small waves-effect waves-light red"><i
-                                        class="material-icons">delete_forever</i></a>&nbsp;&nbsp; <a
-                                    class="btn-floating btn-small waves-effect waves-light red" href="/timePunches"><i
-                                        class="material-icons">visibility</i></a> </td>
+                            <td class="right-align">
+                                <a data-id="{{id}}" class="fired btn-floating btn-small waves-effect waves-light red"><i
+                                        class="material-icons">delete_forever</i></a>
+                                <a data-id="{{id}}" class="viewPunches btn-floating btn-small waves-effect waves-light red"><i
+                                        class="material-icons">visibility</i></a>
+                            </td>
                         </tr>
                         {{/each}}
                     </tbody>
