@@ -33,10 +33,20 @@ module.exports = function(app) {
     db.TimePunch.findAll({
       limit: 1,
       where: {
-        employeeId: req.body.employeeId
+        EmployeeId: req.body.employeeId
       },
       order: [["createdAt", "DESC"]]
     }).then(function(updatePunch) {
+      db.TimePunch.update(
+        {
+          clockOut: req.body.clockOut
+        },
+        {
+          where: {
+            id: updatePunch[0].id
+          }
+        }
+      );
       res.json(updatePunch);
     });
   });

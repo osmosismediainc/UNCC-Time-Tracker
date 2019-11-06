@@ -24,7 +24,7 @@ CREATE TABLE TimePunches
     empLon DECIMAL(9,6),
     createdAt VARCHAR(255) NOT NULL DEFAULT 1000,
     updatedAt VARCHAR(255) NOT NULL DEFAULT 1000,
-	employeeId INT,
+	EmployeeId INT,
 	INDEX emp_ind (employeeId),
     PRIMARY KEY (id),
 	FOREIGN KEY (employeeId) REFERENCES Employees(id) ON UPDATE CASCADE ON DELETE CASCADE

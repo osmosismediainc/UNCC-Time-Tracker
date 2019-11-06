@@ -123,7 +123,6 @@ $(document).ready(function() {
       employeeId: retrievedUser.id,
       clockOut: currentTime
     };
-    console.log("You clicked me");
     $.post("/api/updatePunch", newPunch).then(function(data) {
       console.log("data:", data);
     });
