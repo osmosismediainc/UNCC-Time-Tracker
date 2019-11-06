@@ -11,6 +11,7 @@
                             <th>Date</th>
                             <th>Punch In</th>
                             <th>Punch Out</th>
+                            <th>Location</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -19,7 +20,20 @@
                             <td>{{clockDate}}</td>
                             <td>{{clockIn}}</td>
                             <td>{{clockOut}}</td>
+                            <td><!-- Modal Map Trigger -->
+                                <a class="btn-floating btn-small waves-effect waves-light red modal-trigger" href="#mapModal"><i
+                                        class="material-icons">location_on</i></a></td>
                         </tr>
+                        <!-- Modal Map Structure -->
+                                <div id="mapModal" class="modal">
+                                    <div class="modal-content">
+                                        <h4>Location</h4>
+                                        <p>A bunch of text</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                                    </div>
+                                </div>
                         {{/each}}
                     </tbody>
                 </table>

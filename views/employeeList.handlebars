@@ -18,10 +18,24 @@
                         <tr>
                             <td>{{userId}}</td>
                             <td>{{empName}}</td>
-                            <td class="right-align"> <a data-id="{{id}}" class="fired btn-floating btn-small waves-effect waves-light red"><i
-                                        class="material-icons">delete_forever</i></a>&nbsp;&nbsp; <a
-                                    class="btn-floating btn-small waves-effect waves-light red" href="/timePunches"><i
-                                        class="material-icons">visibility</i></a> </td>
+                            <td class="right-align">
+                                <!-- Delete Trigger -->
+                                <a data-id="{{id}}" class="fired btn-floating btn-small waves-effect waves-light red"><i
+                                        class="material-icons">delete_forever</i></a>&nbsp;&nbsp;
+                                <!-- Modal Map Trigger -->
+                                <a class="btn-floating btn-small waves-effect waves-light red modal-trigger" href="#mapModal"><i
+                                        class="material-icons">location_on</i></a>
+                            </td>
+                             <!-- Modal Map Structure -->
+                                <div id="mapModal" class="modal">
+                                    <div class="modal-content">
+                                        <h4>Location</h4>
+                                        <p>A bunch of text</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                                    </div>
+                                </div>
                         </tr>
                         {{/each}}
                     </tbody>

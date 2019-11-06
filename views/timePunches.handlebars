@@ -14,12 +14,36 @@
                             <th class="right-align">View Location</th>
                         </tr>
                     </thead>
-                                       <tbody>
+                    <tbody>
                         {{#each TimePunch}}
                         <tr>
                             <td>{{clockDate}}</td>
                             <td>{{clockIn}}</td>
                             <td>{{clockOut}}</td>
+                            <td>
+                                <!-- Modal Map Trigger -->
+                                <a class="btn-floating btn-small waves-effect waves-light red modal-trigger"
+                                    href="#mapModal"><i class="material-icons">location_on</i></a>
+                            </td>
+                            <!-- Modal Map Structure -->
+                            <div id="mapModal" class="modal">
+                                <div class="modal-content">
+                                    <h4>Location</h4>
+                                    <div id="mapholder"></div>
+                                    <p>A bunch of text</p>
+                                </div>
+                                <script>
+                                    console.log(process.env);
+                                    function showPosition(position) {
+                                        var latlon = position.coords.latitude + "," + position.coords.longitude;
+                                        var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+" & zoom=14 & size=400x300 & sensor=false & key=YOUR_KEY";
+                                        document.getElementById("mapholder").innerHTML = "<img src='" + img_url + "'>";
+                                    }
+                                </script>
+                                <div class="modal-footer">
+                                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+                                </div>
+                            </div>
                         </tr>
                         {{/each}}
                     </tbody>
