@@ -232,3 +232,10 @@ body {
 main {
   flex: 1 0 auto;
 }
+#map {
+  width: 95%;
+  Height: 400px;
+  background-color: #444;
+  border: 1px solid black;
+  margin: 0 auto;
+}
