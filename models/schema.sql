@@ -17,7 +17,6 @@ CREATE TABLE Employees
 CREATE TABLE TimePunches
 (    
 	id INTEGER AUTO_INCREMENT NOT NULL,
-	empName VARCHAR(255) NOT NULL,
 	clockDate DATE,
 	clockIn TIME,
 	clockOut TIME,
@@ -25,7 +24,7 @@ CREATE TABLE TimePunches
     empLon DECIMAL(9,6),
     createdAt VARCHAR(255) NOT NULL DEFAULT 1000,
     updatedAt VARCHAR(255) NOT NULL DEFAULT 1000,
-	employeeId INT,
+	EmployeeId INT,
 	INDEX emp_ind (employeeId),
     PRIMARY KEY (id),
 	FOREIGN KEY (employeeId) REFERENCES Employees(id) ON UPDATE CASCADE ON DELETE CASCADE

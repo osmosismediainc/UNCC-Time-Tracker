@@ -12,6 +12,7 @@ $(document).ready(function() {
   $(".modal-trigger").leanModal();
   $(".carousel").carousel();
   //Add New Employee
+
   $("#addEmployee-btn").on("click", function(event) {
     event.preventDefault();
 
@@ -57,32 +58,6 @@ $(document).ready(function() {
     manager: false
   };
 
-  //Geolocation
-  $("#clockIn").on("click", function() {
-    var latitude = "";
-    var longitude = "";
-    var currentTime = moment(currentTime).format("hh:mm");
-    console.log(currentTime);
-    getLocation();
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      } else {
-        console.log("Cant get location");
-      }
-    }
-    function showPosition(position) {
-      latitude = position.coords.latitude;
-      longitude = position.coords.longitude;
-      console.log(latitude);
-      console.log(longitude);
-    }
-  });
-
-  $("#clockOut").on("click", function() {
-    console.log("You clicked me");
-  });
-
   // Detects if the users userName and Password are in the database. If not throw err
   $("#login-btn").on("click", function() {
     var userIdInput = $("#userIdInput").val();
@@ -111,7 +86,51 @@ $(document).ready(function() {
   });
 
   var retrievedUser = JSON.parse(localStorage.getItem("currentUser"));
-  console.log(retrievedUser);
+  // console.log(retrievedUser);
+
+  //Geolocation
+  $("#clockIn").on("click", function() {
+    var currentTime = moment().format("HH:mm");
+    var currentDate = moment().format("l");
+    getLocation();
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(createPunch);
+      } else {
+        console.log("Cant get location");
+      }
+    }
+    function createPunch(position) {
+      var latitude = position.coords.latitude.toFixed(2);
+      var longitude = position.coords.longitude.toFixed(2);
+      var newPunch = {
+        clockDate: currentDate,
+        clockIn: currentTime,
+        empLat: latitude,
+        empLon: longitude,
+        employeeId: retrievedUser.id
+      };
+      console.log(newPunch);
+      $.post("/api/newPunch", newPunch).then(function(data) {
+        console.log("data:", data);
+      });
+    }
+  });
+
+  $("#clockOut").on("click", function() {
+    var currentTime = moment().format("HH:mm");
+    var newPunch = {
+      employeeId: retrievedUser.id,
+      clockOut: currentTime
+    };
+    $.post("/api/updatePunch", newPunch).then(function(data) {
+      console.log("data:", data);
+    });
+  });
+
+  $(".brand-logo").on("click", function() {
+    window.location.href = "http://localhost:3000/home/" + retrievedUser.id;
+  });
 
   $("#viewPunch").on("click", function() {
     var queryUrl = "/api/employees/" + retrievedUser.id;
