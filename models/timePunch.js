@@ -3,7 +3,9 @@ module.exports = function(sequelize, DataTypes) {
     empName: DataTypes.STRING,
     clockDate: DataTypes.DATEONLY,
     clockIn: DataTypes.TIME,
-    clockOut: DataTypes.TIME
+    clockOut: DataTypes.TIME,
+    empLat: DataTypes.DECIMAL,
+    empLon: DataTypes.DECIMAL
   });
   TimePunch.associate = function(models) {
     // We're saying that a TimePunch should belong to an Employee

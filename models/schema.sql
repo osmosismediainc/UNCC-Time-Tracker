@@ -21,6 +21,8 @@ CREATE TABLE TimePunches
 	clockDate DATE,
 	clockIn TIME,
 	clockOut TIME,
+	empLat DECIMAL(9,6),
+    empLon DECIMAL(9,6),
     createdAt VARCHAR(255) NOT NULL DEFAULT 1000,
     updatedAt VARCHAR(255) NOT NULL DEFAULT 1000,
 	employeeId INT,
