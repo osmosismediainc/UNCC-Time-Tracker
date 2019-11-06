@@ -137,9 +137,11 @@ $(document).ready(function() {
   $("#viewPunch").on("click", function() {
     var queryUrl = "/api/employees/" + retrievedUser.id;
     $.get(queryUrl, function(data) {
-      var timePunches = data.timePunches;
-      window.location.href =
-        "https://uncctimetracker.herokuapp.com/timePunch/" + data.id;
+      if (data) {
+        var timePunches = data.timePunches;
+        window.location.href =
+          "https://uncctimetracker.herokuapp.com/timePunch/" + data.id;
+      }
       console.log(timePunches);
     });
   });
