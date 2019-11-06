@@ -1,4 +1,3 @@
-module.exports = process.env.MAPAPI;
 module.exports = function(sequelize, DataTypes) {
   var TimePunch = sequelize.define("TimePunch", {
     clockDate: DataTypes.DATEONLY,

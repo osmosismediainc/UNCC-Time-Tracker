@@ -77,7 +77,8 @@ $(document).ready(function() {
           };
           localStorage.setItem("currentUser", JSON.stringify(currentUser));
           console.log(currentUser);
-          window.location.href = "http://localhost:3000/home/" + currentUser.id;
+          window.location.href =
+            "https://uncctimetracker.herokuapp.com/home/" + currentUser.id;
         } else {
           console.log("Why isn't this working!!!!");
         }
@@ -129,14 +130,16 @@ $(document).ready(function() {
   });
 
   $(".brand-logo").on("click", function() {
-    window.location.href = "http://localhost:3000/home/" + retrievedUser.id;
+    window.location.href =
+      "https://uncctimetracker.herokuapp.com/home/" + retrievedUser.id;
   });
 
   $("#viewPunch").on("click", function() {
     var queryUrl = "/api/employees/" + retrievedUser.id;
     $.get(queryUrl, function(data) {
       var timePunches = data.timePunches;
-      window.location.href = "http://localhost:3000/timePunch/" + data.id;
+      window.location.href =
+        "https://uncctimetracker.herokuapp.com/timePunch/" + data.id;
       console.log(timePunches);
     });
   });
@@ -157,7 +160,8 @@ $(document).ready(function() {
     var queryUrl = "/api/employees/" + id;
     $.get(queryUrl, function(data) {
       var timePunches = data.timePunches;
-      window.location.href = "http://localhost:3000/timePunch/" + data.id;
+      window.location.href =
+        "https://uncctimetracker.herokuapp.com/timePunch/" + data.id;
       console.log(timePunches);
     });
   });
