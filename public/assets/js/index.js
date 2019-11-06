@@ -59,27 +59,29 @@ $(document).ready(function() {
 
   //Geolocation
   $("#clockIn").on("click", function() {
+    var latitude = "";
+    var longitude = "";
+    var currentTime = moment(currentTime).format("hh:mm");
+    console.log(currentTime);
     getLocation();
     function getLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
       } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
+        console.log("Cant get location");
       }
     }
     function showPosition(position) {
-      console.log(position.coords.latitude);
-      console.log(position.coords.longitude);
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+      console.log(latitude);
+      console.log(longitude);
     }
   });
 
-  // function showPosition(position) {
-  //   x.innerHTML =
-  //     "Latitude: " +
-  //     position.coords.latitude +
-  //     "<br>Longitude: " +
-  //     position.coords.longitude;
-  // }
+  $("#clockOut").on("click", function() {
+    console.log("You clicked me");
+  });
 
   // Detects if the users userName and Password are in the database. If not throw err
   $("#login-btn").on("click", function() {
