@@ -2,7 +2,7 @@
     <div class="col m12">
         <div class="card blue-grey darken-1">
             <div class="card-content center-align black-text white">
-                <span class="card-title">THIS {{employeeId}} – {{empName}}</span>
+                <span class="card-title">Current Time Punches</span>
             </div>
             <div class="card-content center-align black-text white">
                 <table class="highlight">
@@ -26,20 +26,22 @@
                                     href="#mapModal"><i class="material-icons">location_on</i></a>
                             </td>
                             <!-- Modal Map Structure -->
-                            <div id="mapModal" class="modal">
-                                <div class="modal-content">
-                                    <h4>Location</h4>
-                                    <div id="mapholder"></div>
-                                    <p>A bunch of text</p>
-                                </div>
-                                <script>
-                                    console.log(process.env);
-                                    function showPosition(position) {
-                                        var latlon = position.coords.latitude + "," + position.coords.longitude;
-                                        var img_url = "https://maps.googleapis.com/maps/api/staticmap?center="+latlon+" & zoom=14 & size=400x300 & sensor=false & key=YOUR_KEY";
-                                        document.getElementById("mapholder").innerHTML = "<img src='" + img_url + "'>";
-                                    }
-                                </script>
+                                                   <div id="mapModal" class="modal">
+                            <div class="modal-content">
+                                <h4>Location</h4>
+                                <p>timePunches</p>
+                                <div id="map">MAP</div>
+                            </div>
+                            <script id="googleMaps">
+                                var map;
+                                function initMap() {
+                                    map = new google.maps.Map(document.getElementById('map'), {
+                                        center: { lat: {{empLat}}, lng: {{empLon}} },
+                                zoom: 17
+        });
+      }
+                            </script>
+                            {{!-- <script src=“https://maps.googleapis.com/maps/api/js?key=“+process.env.MAPAPI+“&callback=initMap” async defer></script> --}}
                                 <div class="modal-footer">
                                     <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
                                 </div>
