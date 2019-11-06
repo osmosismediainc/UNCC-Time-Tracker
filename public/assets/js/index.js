@@ -12,6 +12,7 @@ $(document).ready(function() {
   $(".modal-trigger").leanModal();
   $(".carousel").carousel();
   //Add New Employee
+
   $("#addEmployee-btn").on("click", function(event) {
     event.preventDefault();
 
@@ -112,6 +113,10 @@ $(document).ready(function() {
 
   var retrievedUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log(retrievedUser);
+
+  $(".brand-logo").on("click", function() {
+    window.location.href = "http://localhost:3000/home/" + retrievedUser.id;
+  });
 
   $("#viewPunch").on("click", function() {
     var queryUrl = "/api/employees/" + retrievedUser.id;
