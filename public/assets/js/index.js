@@ -59,24 +59,29 @@ $(document).ready(function() {
 
   //Geolocation
   $("#clockIn").on("click", function() {
-    var location = getLocation;
+    var latitude = "";
+    var longitude = "";
+    var currentTime = moment(currentTime).format("hh:mm");
+    console.log(currentTime);
+    getLocation();
     function getLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
-        console.log(location);
       } else {
-        location.innerHTML = "Geolocation is not supported by this browser.";
+        console.log("Cant get location");
       }
+    }
+    function showPosition(position) {
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+      console.log(latitude);
+      console.log(longitude);
     }
   });
 
-  // function showPosition(position) {
-  //   x.innerHTML =
-  //     "Latitude: " +
-  //     position.coords.latitude +
-  //     "<br>Longitude: " +
-  //     position.coords.longitude;
-  // }
+  $("#clockOut").on("click", function() {
+    console.log("You clicked me");
+  });
 
   // Detects if the users userName and Password are in the database. If not throw err
   $("#login-btn").on("click", function() {
@@ -97,9 +102,7 @@ $(document).ready(function() {
           };
           localStorage.setItem("currentUser", JSON.stringify(currentUser));
           console.log(currentUser);
-          window.location.replace(
-            "http://localhost:3000/home/" + currentUser.id
-          );
+          window.location.href = "http://localhost:3000/home/" + currentUser.id;
         } else {
           console.log("Why isn't this working!!!!");
         }
@@ -108,17 +111,17 @@ $(document).ready(function() {
   });
 
   var retrievedUser = JSON.parse(localStorage.getItem("currentUser"));
-  console.log("retrievedUser: ", retrievedUser);
+  console.log(retrievedUser);
 
   $("#viewPunch").on("click", function() {
     var queryUrl = "/api/employees/" + retrievedUser.id;
     $.get(queryUrl, function(data) {
       var timePunches = data.timePunches;
-      window.location.replace("http://localhost:3000/timePunch/" + data.id);
+      window.location.href = "http://localhost:3000/timePunch/" + data.id;
       console.log(timePunches);
-      console.log("this is data: " + data.TimePunches);
     });
   });
+
   $(".fired").on("click", function(event) {
     event.preventDefault();
     var id = $(this).data("id");
@@ -127,6 +130,16 @@ $(document).ready(function() {
       type: "DELETE"
     }).then(function() {
       location.reload();
+    });
+  });
+
+  $(".viewPunches").on("click", function() {
+    var id = $(this).data("id");
+    var queryUrl = "/api/employees/" + id;
+    $.get(queryUrl, function(data) {
+      var timePunches = data.timePunches;
+      window.location.href = "http://localhost:3000/timePunch/" + data.id;
+      console.log(timePunches);
     });
   });
 });

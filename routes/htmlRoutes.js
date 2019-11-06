@@ -36,8 +36,15 @@ module.exports = function(app) {
   });
 
   // Route to View Time
-  app.get("/timePunches", function(req, res) {
-    res.render("timePunches", {});
+  app.get("/timePunches/:id", function(req, res) {
+    db.Employee.findOne({
+      include: [db.TimePunch],
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbEmployee) {
+      res.render("timePunches", dbEmployee);
+    });
   });
 
   app.get("/timePunch/:id", function(req, res) {
@@ -48,7 +55,6 @@ module.exports = function(app) {
       }
     }).then(function(dbEmployee) {
       res.render("timePunch", dbEmployee);
-      console.log("This is Employee" + dbEmployee.TimePunches);
     });
   });
 
