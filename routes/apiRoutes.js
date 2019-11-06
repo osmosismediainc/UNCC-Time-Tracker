@@ -13,9 +13,36 @@ module.exports = function(app) {
     });
   });
 
+  // Creates a time punch for current employee
+  app.post("/api/newPunch", function(req, res) {
+    var employeeId = parseInt(req.body.employeeId);
+    db.TimePunch.create({
+      include: [db.Employee],
+      clockDate: req.body.clockDate,
+      clockIn: req.body.clockIn,
+      empLat: req.body.empLat,
+      empLon: req.body.empLon,
+      EmployeeId: employeeId
+    }).then(function(dbNewTimePunch) {
+      res.json(dbNewTimePunch);
+      console.log("Successfully created!");
+    });
+  });
+
+  app.post("/api/updatePunch", function(req, res) {
+    db.TimePunch.findAll({
+      limit: 1,
+      where: {
+        employeeId: req.body.employeeId
+      },
+      order: [["createdAt", "DESC"]]
+    }).then(function(updatePunch) {
+      res.json(updatePunch);
+    });
+  });
+
   // Create a new employee
   app.post("/api/new-employees", function(req, res) {
-    console.log(req.body);
     console.log("hello post");
     db.Employee.create({
       userId: req.body.userId,

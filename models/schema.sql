@@ -17,7 +17,6 @@ CREATE TABLE Employees
 CREATE TABLE TimePunches
 (    
 	id INTEGER AUTO_INCREMENT NOT NULL,
-	empName VARCHAR(255) NOT NULL,
 	clockDate DATE,
 	clockIn TIME,
 	clockOut TIME,
