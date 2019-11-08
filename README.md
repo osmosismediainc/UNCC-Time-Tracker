@@ -12,9 +12,19 @@ ________________________________________________________________________________
 * MySQL Database with Sequelize
 * Heroku
 * Foundations Framework (new technology)
-* Opensource Streetmaps API (new technology)
+* Google Maps API (new technology)
 * Handelbars for server-side templating
 * Materialize CSS (new technology)
 * jQuery
+* Moment JS
+* Favicon
 
-Something here
+### Contributors
+_______________________________________________________________________________________________________________________
+1. Jacob Fenwick
+1. Daniel Goldman
+1. Denise Middleton
+
+## TimeTrack App
+_______________________________________________________________________________________________________________________
+![Video of the TimeTrack App](project2.gif)
